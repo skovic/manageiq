@@ -72,6 +72,13 @@ gem "foreman_api_client",             ">=0.1.0",   :require => false, :git => "g
 gem "ruport",                         "=1.7.0",                       :git => "git://github.com/ManageIQ/ruport.git", :tag => "v1.7.0-3"
 gem "ziya",                           "=2.3.0",    :require => false, :git => "git://github.com/ManageIQ/ziya.git", :tag => "v2.3.0-3"
 
+
+#To Lenovo provider
+gem "xclarity_client", :git => "git://github.com/maas-ufcg/xclarity_client", :branch => "master"
+gem "manageiq-providers-lenovo", :git => "git://github.com/maas-ufcg/manageiq-providers-lenovo", :branch => "provider-modeling"
+
+
+
 # In 1.9.3: Time.parse uses british version dd/mm/yyyy instead of american version mm/dd/yyyy
 # american_date fixes this to be compatible with 1.8.7 until all callers can be converted to the 1.9.3 format prior to parsing.
 # See miq_expression_spec Date/Time Support examples.

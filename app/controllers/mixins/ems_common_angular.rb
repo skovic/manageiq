@@ -94,9 +94,14 @@ module Mixins
         javascript_redirect :action    => 'show_list',
                             :flash_msg => flash_msg
       else
+
+        str_param = ""
+        params.each_pair do |key, value|
+            str_param = str_param + "#{key}: #{value} "
+        end
         @in_a_form = true
         ems.errors.each do |field, msg|
-          add_flash("#{ems.class.human_attribute_name(field)} #{msg}", :error)
+          add_flash("#{ems.class.human_attribute_name(field)} #{msg} WAAAAT?! params-> " + str_param, :error)
         end
 
         drop_breadcrumb(:name => _("Add New %{tables}") % {:tables => ui_lookup(:tables => table_name)},
@@ -182,8 +187,8 @@ module Mixins
         default_hostname = @ems.connection_configurations.default.endpoint.hostname
         default_api_port = @ems.connection_configurations.default.endpoint.port
       else
-        default_hostname = @ems.hostname
-        default_api_port = @ems.port
+        default_hostname = @ems.hostname ||= "test"
+        default_api_port = @ems.port ||= 8080
       end
 
       @ems_types = Array(model.supported_types_and_descriptions_hash.invert).sort_by(&:first)
@@ -352,6 +357,12 @@ module Mixins
                              :path     => metrics_database_name }
       end
 
+
+      #TODO (walteraa) check if have more params(like access port) to Lenovo XCLarity.
+      if ems.kind_of?(ManageIQ::Providers::Lenovo::PhysicalInfraManager) 
+        default_endpoint = {:role => :default, :hostname => hostname}
+      end
+
       if ems.kind_of?(ManageIQ::Providers::Google::CloudManager)
         ems.project = params[:project]
       end
@@ -375,6 +386,8 @@ module Mixins
         ems.azure_tenant_id = params[:azure_tenant_id]
         ems.subscription    = params[:subscription] unless params[:subscription].blank?
       end
+
+    
 
       if ems.kind_of?(ManageIQ::Providers::ContainerManager)
         params[:cred_type] = ems.default_authentication_type if params[:cred_type] == "default"

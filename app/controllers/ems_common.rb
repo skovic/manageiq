@@ -365,9 +365,13 @@ module EmsCommon
     @in_a_form = true
     @changed = session[:changed]
 
+
+
     # validate button should say "revalidate" if the form is unchanged
     revalidating = !edit_changed?
     result, details = verify_ems.authentication_check(params[:type], :save => revalidating)
+    
+
     if result
       add_flash(_("Credential validation was successful"))
     else
@@ -950,6 +954,8 @@ module EmsCommon
     if ems.supports_authentication?(:auth_key) && !@edit[:new][:service_account].blank?
       creds[:default] = {:auth_key => @edit[:new][:service_account], :userid => "_"}
     end
+
+
     ems.update_authentication(creds, :save => (mode != :validate))
   end
 

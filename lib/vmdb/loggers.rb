@@ -52,6 +52,7 @@ module Vmdb
         $vim_log       = MirroredLogger.new(path_dir.join("vim.log"),        "<VIM> ")
         $rhevm_log     = MirroredLogger.new(path_dir.join("rhevm.log"),      "<RHEVM> ")
         $aws_log       = MirroredLogger.new(path_dir.join("aws.log"),        "<AWS> ")
+        $lenovo_log    = MirroredLogger.new(path_dir.join("lenovo.log"),     "<Lenovo>")
         $kube_log      = MirroredLogger.new(path_dir.join("kubernetes.log"), "<KUBERNETES> ")
         $mw_log        = MirroredLogger.new(path_dir.join("middleware.log"), "<MIDDLEWARE> ")
         $scvmm_log     = MirroredLogger.new(path_dir.join("scvmm.log"),      "<SCVMM> ")

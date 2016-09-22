@@ -37,6 +37,7 @@ module MiqServer::WorkerManagement::Monitor::ClassNames
     ManageIQ::Providers::Openstack::CloudManager::RefreshWorker
     ManageIQ::Providers::Openstack::NetworkManager::RefreshWorker
     ManageIQ::Providers::Openstack::InfraManager::RefreshWorker
+    ManageIQ::Providers::Lenovo::PhysicalInfraManager::RefreshWorker
     ManageIQ::Providers::Vmware::CloudManager::RefreshWorker
     ManageIQ::Providers::Vmware::NetworkManager::RefreshWorker
     ManageIQ::Providers::Vmware::InfraManager::RefreshWorker
@@ -114,6 +115,7 @@ module MiqServer::WorkerManagement::Monitor::ClassNames
     ManageIQ::Providers::Openstack::CloudManager::RefreshWorker
     ManageIQ::Providers::Openstack::NetworkManager::RefreshWorker
     ManageIQ::Providers::Openstack::InfraManager::RefreshWorker
+    ManageIQ::Providers::Lenovo::PhysicalInfraManager::RefreshWorker
     ManageIQ::Providers::Vmware::CloudManager::RefreshWorker
     ManageIQ::Providers::Vmware::NetworkManager::RefreshWorker
     ManageIQ::Providers::Vmware::InfraManager::RefreshWorker

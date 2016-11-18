@@ -75,9 +75,8 @@ gem "ziya",                           "=2.3.0",    :require => false, :git => "g
 
 #To Lenovo provider
 gem "uuid"
-gem "xclarity_client", :git => "git://github.com/maas-ufcg/xclarity_client", :branch => "xclarity_resources"
-gem "manageiq-providers-lenovo", :git => "git://github.com/maas-ufcg/manageiq-providers-lenovo", :branch => "physical_server_refactoring"
-
+gem "xclarity_client"
+gem "manageiq-providers-lenovo", git: "git://github.com/manageiq/manageiq-providers-lenovo", :branch => "master"
 
 # In 1.9.3: Time.parse uses british version dd/mm/yyyy instead of american version mm/dd/yyyy
 # american_date fixes this to be compatible with 1.8.7 until all callers can be converted to the 1.9.3 format prior to parsing.

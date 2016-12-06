@@ -14,7 +14,7 @@ gem "acts_as_list",                   "~>0.7.2"
 gem "acts_as_tree",                   "~>2.1.0" # acts_as_tree needs to be required so that it loads before ancestry
 gem "ancestry",                       "~>2.1.0",       :require => false
 gem "ansible_tower_client",           "~>0.3.2",       :require => false
-gem "aws-sdk",                        "~>2.2.19",      :require => false
+gem "aws-sdk",                        '~> 2.6.27',     :require => false
 gem "color",                          "~>1.8"
 gem "dalli",                          "~>2.7.4",       :require => false
 gem "draper",                         "~>3.0.0.pre1"
@@ -75,8 +75,8 @@ gem "ziya",                           "=2.3.0",    :require => false, :git => "g
 
 #To Lenovo provider
 gem "uuid"
-gem "xclarity_client"
-gem "manageiq-providers-lenovo", git: "git://github.com/manageiq/manageiq-providers-lenovo", :branch => "master"
+gem "xclarity_client"          , path: "/home/odravison/workspace-odravison/xclarity_client"
+gem "manageiq-providers-lenovo", path: "/home/odravison/workspace-odravison/manageiq-providers-lenovo" #git: "git://github.com/manageiq/manageiq-providers-lenovo", :branch => "master"
 
 # In 1.9.3: Time.parse uses british version dd/mm/yyyy instead of american version mm/dd/yyyy
 # american_date fixes this to be compatible with 1.8.7 until all callers can be converted to the 1.9.3 format prior to parsing.

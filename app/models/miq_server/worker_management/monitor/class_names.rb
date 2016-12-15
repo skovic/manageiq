@@ -56,6 +56,7 @@ module MiqServer::WorkerManagement::Monitor::ClassNames
     ManageIQ::Providers::Openstack::NetworkManager::EventCatcher
     ManageIQ::Providers::Openstack::InfraManager::EventCatcher
     ManageIQ::Providers::Vmware::InfraManager::EventCatcher
+    ManageIQ::Providers::Lenovo::PhysicalInfraManager::EventCatcher
     MiqEventHandler
     MiqGenericWorker
     MiqNetappRefreshWorker

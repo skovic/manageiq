@@ -35,13 +35,37 @@
     - :post
     - :patch
     - :delete
+    :pg: &pg
+    - :put
+    - :get
 :collections:
   :physical_servers:
     :description: Physical Servers
+    :identifier: physical_server
     :options:
     - :collection
-    :verbs: *g
-    :kclass: PhysicalServer
+    :verbs: *pg
+    :klass: PhysicalServer
+    :collection_actions:
+      :put:
+      - :name: power_on
+        :identifier: physical_server_power_on
+      - :name: power_off
+        :identifier: physical_server_power_off
+      - :name: turn_on_loc_led
+        :identifier: physical_server_turn_on_loc_led
+      - :name: turn_off_loc_led
+        :identifier: physical_server_turn_off_loc_led
+    :resource_actions:
+      :put:
+      - :name: power_on
+        :identifier: physical_server_power_on
+      - :name: power_off
+        :identifier: physical_server_power_off
+      - :name: turn_on_loc_led
+        :identifier: physical_server_turn_on_loc_led
+      - :name: turn_off_loc_led
+        :identifier: physical_server_turn_off_loc_led
   :accounts:
     :description: Accounts
     :options:

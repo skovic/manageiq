@@ -35,6 +35,7 @@ module MiqServer::WorkerManagement::Monitor::ClassNames
     ManageIQ::Providers::Openstack::InfraManager::RefreshWorker
     ManageIQ::Providers::StorageManager::CinderManager::RefreshWorker
     ManageIQ::Providers::StorageManager::SwiftManager::RefreshWorker
+    ManageIQ::Providers::Lenovo::PhysicalInfraManager::RefreshWorker
     ManageIQ::Providers::Vmware::CloudManager::RefreshWorker
     ManageIQ::Providers::Vmware::NetworkManager::RefreshWorker
     ManageIQ::Providers::Vmware::InfraManager::RefreshWorker
@@ -53,6 +54,7 @@ module MiqServer::WorkerManagement::Monitor::ClassNames
     ManageIQ::Providers::StorageManager::CinderManager::EventCatcher
     ManageIQ::Providers::Vmware::InfraManager::EventCatcher
     ManageIQ::Providers::Vmware::CloudManager::EventCatcher
+    ManageIQ::Providers::Lenovo::PhysicalInfraManager::EventCatcher
     MiqEventHandler
     MiqGenericWorker
     MiqNetappRefreshWorker
@@ -110,6 +112,7 @@ module MiqServer::WorkerManagement::Monitor::ClassNames
     ManageIQ::Providers::Openstack::InfraManager::RefreshWorker
     ManageIQ::Providers::StorageManager::CinderManager::RefreshWorker
     ManageIQ::Providers::StorageManager::SwiftManager::RefreshWorker
+    ManageIQ::Providers::Lenovo::PhysicalInfraManager::RefreshWorker
     ManageIQ::Providers::Vmware::CloudManager::RefreshWorker
     ManageIQ::Providers::Vmware::NetworkManager::RefreshWorker
     ManageIQ::Providers::Vmware::InfraManager::RefreshWorker

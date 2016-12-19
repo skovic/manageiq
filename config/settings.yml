@@ -1221,6 +1221,8 @@
           :event_types_regex: '\A(firewall|floatingip|gateway|net|port|router|subnet|security-group|vpn)'
       :event_catcher_amazon:
         :poll: 15.seconds
+      :event_catcher_lenovo:
+        :poll: 4.minutes
       :event_catcher_azure:
         :poll: 15.seconds
       :event_catcher_hawkular:
@@ -1279,6 +1281,7 @@
           :restart_interval: 2.hours
         :ems_refresh_worker_amazon: {}
         :ems_refresh_worker_amazon_network: {}
+        :ems_refresh_worker_lenovo_physical_infra: {}
         :ems_refresh_worker_ansible_tower_configuration: {}
         :ems_refresh_worker_azure: {}
         :ems_refresh_worker_azure_network: {}

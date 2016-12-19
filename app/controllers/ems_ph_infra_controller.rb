@@ -1,4 +1,4 @@
-class EmsInfraController < ApplicationController
+class EmsPhInfraController < ApplicationController
   include EmsCommon        # common methods for EmsInfra/Cloud controllers
   include Mixins::EmsCommonAngular
 
@@ -12,15 +12,15 @@ class EmsInfraController < ApplicationController
   end
 
   def self.table_name
-    @table_name ||= "ems_infra"
+    @table_name ||= "ems_ph_infra"
   end
 
   def ems_path(*args)
-    ems_infra_path(*args)
+    ems_ph_infra_path(*args)
   end
 
   def new_ems_path
-    new_ems_infra_path
+    new_ems_ph_infra_path
   end
 
   def index
@@ -28,14 +28,14 @@ class EmsInfraController < ApplicationController
   end
 
   def scaling
-    assert_privileges("ems_infra_scale")
+    assert_privileges("ems_ph_infra_scale")
 
     # Hiding the toolbars
     @in_a_form = true
 
-    redirect_to ems_infra_path(params[:id]) if params[:cancel]
+    redirect_to ems_ph_infra_path(params[:id]) if params[:cancel]
 
-    drop_breadcrumb(:name => _("Scale Infrastructure Provider"), :url => "/ems_infra/scaling")
+    drop_breadcrumb(:name => _("Scale Physical Infrastructure Provider"), :url => "/ems_ph_infra/scaling")
     @infra = ManageIQ::Providers::Openstack::InfraManager.find(params[:id])
     # TODO: Currently assumes there is a single stack per infrastructure provider. This should
     # be improved to support multiple stacks.
@@ -70,13 +70,13 @@ class EmsInfraController < ApplicationController
   end
 
   def scaledown
-    assert_privileges("ems_infra_scale")
-    redirect_to ems_infra_path(params[:id]) if params[:cancel]
+    assert_privileges("ems_ph_infra_scale")
+    redirect_to ems_ph_infra_path(params[:id]) if params[:cancel]
 
     # Hiding the toolbars
     @in_a_form = true
 
-    drop_breadcrumb(:name => _("Scale Infrastructure Provider Down"), :url => "/ems_infra/scaling")
+    drop_breadcrumb(:name => _("Scale Physical Infrastructure Provider Down"), :url => "/ems_ph_infra/scaling")
     @infra = ManageIQ::Providers::Openstack::InfraManager.find(params[:id])
     # TODO: Currently assumes there is a single stack per infrastructure provider. This should
     # be improved to support multiple stacks.
@@ -100,7 +100,7 @@ class EmsInfraController < ApplicationController
       # verify selected nodes can be removed
       has_invalid_nodes, error_return_message = verify_hosts_for_scaledown(hosts)
       if has_invalid_nodes
-        log_and_flash_message(error_return_message + "WHAAAT?!")
+        log_and_flash_message(error_return_message)
         return
       end
 
@@ -111,60 +111,7 @@ class EmsInfraController < ApplicationController
     end
   end
 
-  def register_nodes
-    assert_privileges("host_register_nodes")
-    redirect_to ems_infra_path(params[:id], :display => "hosts") if params[:cancel]
-
-    # Hiding the toolbars
-    @in_a_form = true
-    drop_breadcrumb(:name => _("Register Nodes"), :url => "/ems_infra/register_nodes")
-
-    @infra = ManageIQ::Providers::Openstack::InfraManager.find(params[:id])
-
-    if params[:register]
-      if params[:nodes_json].nil? || params[:nodes_json][:file].nil?
-        log_and_flash_message(_("Please select a JSON file containing the nodes you would like to register."))
-        return
-      end
-
-      begin
-        uploaded_file = params[:nodes_json][:file]
-        nodes_json = parse_json(uploaded_file)
-        if nodes_json.nil?
-          log_and_flash_message(_("JSON file format is incorrect, missing 'nodes'."))
-        end
-      rescue => ex
-        log_and_flash_message(_("Cannot parse JSON file: %{message}") %
-                                  {:message => ex})
-      end
-
-      if nodes_json
-        begin
-          @infra.workflow_service
-        rescue => ex
-          log_and_flash_message(_("Cannot connect to workflow service: %{message}") %
-                                    {:message => ex})
-          return
-        end
-        begin
-          state, response = @infra.register_and_configure_nodes(nodes_json)
-        rescue => ex
-          log_and_flash_message(_("Error executing register and configure workflows: %{message}") %
-                                    {:message => ex})
-          return
-        end
-        if state == "SUCCESS"
-          redirect_to ems_infra_path(params[:id],
-                                     :display   => "hosts",
-                                     :flash_msg => _("Nodes were added successfully. Refresh queued."))
-        else
-          log_and_flash_message(_("Unable to add nodes: %{error}") % {:error => response})
-        end
-      end
-    end
-  end
-
-  def ems_infra_form_fields
+  def ems_ph_infra_form_fields
     ems_form_fields
   end
 
@@ -200,7 +147,7 @@ class EmsInfraController < ApplicationController
         if operation == 'scaledown'
           @stack.queue_post_scaledown_task(additional_args[:services])
         end
-        redirect_to ems_infra_path(provider_id, :flash_msg => return_message)
+        redirect_to ems_ph_infra_path(provider_id, :flash_msg => return_message)
       rescue => ex
         log_and_flash_message(_("Unable to initiate scaling: %{message}") % {:message => ex})
       end
@@ -261,10 +208,4 @@ class EmsInfraController < ApplicationController
     true
   end
   public :restful?
-
-  def parse_json(uploaded_file)
-    JSON.parse(uploaded_file.read)["nodes"]
-  end
-
-  menu_section :inf
 end

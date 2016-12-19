@@ -189,8 +189,10 @@ ManageIQ.angular.app.controller('emsCommonFormController', ['$http', '$scope', '
   };
 
   $scope.isBasicInfoValid = function() {
+
     if(($scope.currentTab == "default" && $scope.emsCommonModel.emstype != "azure") &&
       ($scope.emsCommonModel.emstype == "ec2" ||
+       $scope.emsCommonModel.emstype == "lenovo_ph_infra" && $scope.emsCommonModel.default_hostname  ||
        $scope.emsCommonModel.emstype == "openstack" && $scope.emsCommonModel.default_hostname ||
        $scope.emsCommonModel.emstype == "scvmm" && $scope.emsCommonModel.default_hostname ||
        $scope.emsCommonModel.emstype == "openstack_infra" && $scope.emsCommonModel.default_hostname ||
@@ -399,6 +401,7 @@ ManageIQ.angular.app.controller('emsCommonFormController', ['$http', '$scope', '
       }
       $scope.postValidationModel.default = {
         default_hostname:          $scope.emsCommonModel.default_hostname,
+        hostname:                  $scope.emsCommonModel.default_hostname,
         default_api_port:          $scope.emsCommonModel.default_api_port,
         default_security_protocol: $scope.emsCommonModel.default_security_protocol,
         default_userid:            $scope.emsCommonModel.default_userid,

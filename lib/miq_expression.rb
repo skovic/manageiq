@@ -258,8 +258,8 @@ class MiqExpression
     'VmOrTemplate'                                => 'vm',
     'ManageIQ::Providers::CloudManager::Vm'       => 'vm',
     'ManageIQ::Providers::InfraManager::Vm'       => 'vm',
-    'ContainerProject'                            => 'container_project'
     'ManageIQ::Providers::PhInfraManager::Vm'     => 'vm',
+    'ContainerProject'                            => 'container_project'
   }
   EXCLUDE_FROM_RELATS = {
     "ManageIQ::Providers::CloudManager" => ["hosts", "ems_clusters", "resource_pools"]

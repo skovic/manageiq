@@ -1,7 +1,7 @@
 class PhysicalServer < ApplicationRecord
   include NewWithTypeStiMixin
 
-  include_concern 'Operations'
+  #include_concern 'Operations'
 
   acts_as_miq_taggable
 

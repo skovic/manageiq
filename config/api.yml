@@ -47,7 +47,7 @@
     :verbs: *pg
     :klass: PhysicalServer
     :subcollections:
-    - :firmwares:
+    - :firmwares
     collection_actions:
       :put:
       - :name: power_on

@@ -44,12 +44,12 @@
     :identifier: physical_server
     :options:
     - :collection
-    :verbs: *pg
+    :verbs: *gp
     :klass: PhysicalServer
     :subcollections:
     - :firmwares
     collection_actions:
-      :put:
+      :post:
       - :name: power_on
         :identifier: physical_server_power_on
       - :name: power_off
@@ -59,7 +59,7 @@
       - :name: turn_off_loc_led
         :identifier: physical_server_turn_off_loc_led
     :resource_actions:
-      :put:
+      :post:
       - :name: power_on
         :identifier: physical_server_power_on
       - :name: power_off

@@ -19,6 +19,10 @@ module Api
       end
     end
 
+    def blink_loc_led_resource(type, id, _data)
+      change_resource_state(:blink_loc_led, type, id)
+    end
+
     def turn_on_loc_led_resource(type, id, _data)
       change_resource_state(:turn_on_loc_led, type, id)
     end

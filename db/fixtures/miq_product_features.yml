@@ -5413,6 +5413,10 @@
       :feature_type: control
       :identifier: physical_server_control
       :children:
+      - :name: Blink LED
+        :description: Blink Loc LED
+        :feature_type: control
+        :identifier: physical_server_blink_loc_led
       - :name: Turn On LED
         :description: Turn On Loc LED
         :feature_type: control

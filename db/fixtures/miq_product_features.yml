@@ -5653,6 +5653,18 @@
       :feature_type: control
       :identifier: physical_server_control
       :children:
+      - :name: Turn On Server
+        :description: Turn On Server
+        :feature_type: control
+        :identifier: physical_server_power_on        
+      - :name: Turn Off Server
+        :description: Turn Off Server
+        :feature_type: control
+        :identifier: physical_server_power_off  
+      - :name: Restart Server
+        :description: Restart Server
+        :feature_type: control
+        :identifier: physical_server_restart
       - :name: Blink LED
         :description: Blink Loc LED
         :feature_type: control
@@ -5665,6 +5677,19 @@
         :description: Turn Off Loc LED
         :feature_type: control
         :identifier: physical_server_turn_off_loc_led
+    - :name: View
+      :description: View Physical Server
+      :feature_type: view
+      :identifier: physical_server_view
+      :children:
+      - :name: List
+        :description: Display Lists of Physical Servers
+        :feature_type: view
+        :identifier: physical_server_show_list
+      - :name: Show
+        :description: Display Individual Physical Server
+        :feature_type: view
+        :identifier: physical_server_show        
 
   # Virtual Machines access rules
   - :name: VM Access Rules
@@ -6312,26 +6337,6 @@
       :description: Add a Physical Infrastructure Provider
       :feature_type: admin
       :identifier: ems_physical_infra_new
-
-# Physical Servers
-- :name: Physical Servers
-  :description: Everything under Physical Infra Servers
-  :feature_type: node
-  :identifier: physical_server
-  :children:
-  - :name: View
-    :description: View Physical Server
-    :feature_type: view
-    :identifier: physical_server_view
-    :children:
-    - :name: List
-      :description: Display Lists of Physical Servers
-      :feature_type: view
-      :identifier: physical_server_show_list
-    - :name: Show
-      :description: Display Individual Physical Server
-      :feature_type: view
-      :identifier: physical_server_show
 
 # Monitor
 - :name: Monitor

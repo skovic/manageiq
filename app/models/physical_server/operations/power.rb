@@ -1,4 +1,6 @@
 module PhysicalServer::Operations::Power
+  extend ActiveSupport::Concern
+
   def power_on
     change_state(:power_on)
   end

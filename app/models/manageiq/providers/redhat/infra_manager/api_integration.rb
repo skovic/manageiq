@@ -198,6 +198,7 @@ module ManageIQ::Providers::Redhat::InfraManager::ApiIntegration
   end
 
   def history_database_name
+    @history_database_name = connection_configurations.try(:metrics).try(:endpoint).try(:path)
     @history_database_name ||= begin
                                  version = version_3_0? ? '3_0' : '>3_0'
                                  self.class.history_database_name_for(version)
@@ -273,9 +274,15 @@ module ManageIQ::Providers::Redhat::InfraManager::ApiIntegration
       # Get the timeout from the configuration:
       timeout, = ems_timeouts(:ems_redhat, service)
 
-      # Create the connection:
+      url = URI::Generic.build(
+        :scheme => scheme,
+        :host   => server,
+        :port   => port,
+        :path   => path
+      )
+
       OvirtSDK4::Connection.new(
-        :url      => "#{scheme}://#{server}:#{port}#{path}",
+        :url      => url.to_s,
         :username => username,
         :password => password,
         :timeout  => timeout,

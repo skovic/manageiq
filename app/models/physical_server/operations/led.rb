@@ -1,6 +1,6 @@
 module PhysicalServer::Operations::Led
   extend ActiveSupport::Concern
-  
+
   def blink_loc_led
     change_state(:blink_loc_led)
   end

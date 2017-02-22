@@ -6402,17 +6402,36 @@
       :feature_type: view
       :identifier: physical_server_show
 
-# Physical Infrastructure Topology
-- :name: Physical Infra Topology
-  :description: Physical Infra Topology
-  :feature_type: node
-  :identifier: physical_infra_topology
-  :children:
-    - :name: View
-      :description: View Physical Infra Topology
-      :feature_type: view
-      :identifier: physical_infra_topology_view
-
+- :name: Operate
+    :description: Perform Operations on Physical Servers
+    :feature_type: control
+    :identifier: physical_server_control
+    :children:
+    - :name: Blink LED
+      :description: Blink Loc LED
+      :feature_type: control
+      :identifier: physical_server_blink_loc_led
+    - :name: Turn On LED
+      :description: Turn On Loc LED
+      :feature_type: control
+      :identifier: physical_server_turn_on_loc_led
+    - :name: Turn Off LED
+      :description: Turn Off Loc LED
+      :feature_type: control
+      :identifier: physical_server_turn_off_loc_led
+    - :name: Turn off server
+      :description: Turn off server
+      :feature_type: control
+      :identifier: physical_server_power_off
+    - :name: Turn On Server
+      :description: Turn On Server
+      :feature_type: control
+      :identifier: physical_server_power_on
+    - :name: Restart server
+      :description: Restart Server
+      :feature_type: control
+      :identifier: physical_server_restart
+      
 # Monitor
 - :name: Monitor
   :description: Everything under Monitor

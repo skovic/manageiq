@@ -3,8 +3,8 @@ module ManagerRefresh
     attr_accessor :object, :id
     attr_reader :inventory_collection, :data
 
-    delegate :manager_ref, :base_class_name, :to => :inventory_collection
-    delegate :[], :to => :data
+    delegate :manager_ref, :base_class_name, :model_class, :to => :inventory_collection
+    delegate :[], :[]=, :to => :data
 
     def initialize(inventory_collection, data)
       @inventory_collection     = inventory_collection
@@ -23,10 +23,6 @@ module ManagerRefresh
     end
 
     def attributes(inventory_collection_scope = nil)
-      # TODO(lsmola) mark method with !, for performance reasons, this methods can be called only once, the second
-      # call will not return saveable result. We do not want to cache the result, since we want the lowest memory
-      # footprint.
-
       # We should explicitly pass a scope, since the inventory_object can be mapped to more InventoryCollections with
       # different blacklist and whitelist. The generic code always passes a scope.
       inventory_collection_scope ||= inventory_collection
@@ -74,21 +70,57 @@ module ManagerRefresh
     end
 
     def to_s
-      "InventoryObject:('#{manager_uuid}', #{inventory_collection})"
+      manager_uuid
     end
 
     def inspect
-      to_s
+      "InventoryObject:('#{manager_uuid}', #{inventory_collection})"
     end
 
     def dependency?
       !inventory_collection.saved?
     end
 
-    def []=(key, value)
-      data[key] = value
-      inventory_collection.actualize_dependency(key, value)
-      value
+    def allowed_writers
+      return [] unless model_class
+
+      # Get all writers of a model
+      @allowed_writers ||= (model_class.new.methods - Object.methods).grep(/^[\w]+?\=$/)
+    end
+
+    def allowed_readers
+      return [] unless model_class
+
+      # Get all readers inferred from writers of a model
+      @allowed_readers ||= allowed_writers.map { |x| x.to_s.delete("=").to_sym }
+    end
+
+    def method_missing(method_name, *arguments, &block)
+      if allowed_writers.include?(method_name)
+        self.class.define_data_writer(method_name)
+        send(method_name, arguments[0])
+      elsif allowed_readers.include?(method_name)
+        self.class.define_data_reader(method_name)
+        send(method_name)
+      else
+        super
+      end
+    end
+
+    def respond_to_missing?(method_name, _include_private = false)
+      allowed_writers.include?(method_name) || allowed_readers.include?(method_name) || super
+    end
+
+    def self.define_data_writer(data_key)
+      define_method(data_key) do |value|
+        send(:[]=, data_key.to_s.delete("=").to_sym, value)
+      end
+    end
+
+    def self.define_data_reader(data_key)
+      define_method(data_key) do
+        send(:[], data_key)
+      end
     end
 
     private
@@ -102,7 +134,6 @@ module ManagerRefresh
       foreign_to_association = inventory_collection_scope.foreign_key_to_association_mapping[key] ||
                                inventory_collection_scope.foreign_type_to_association_mapping[key]
 
-      # TODO(lsmola) can we make this O(1)? This check will be performed for each record in the DB
       return false if inventory_collection_scope.attributes_blacklist.present? &&
                       (inventory_collection_scope.attributes_blacklist.include?(key) ||
                         (foreign_to_association && inventory_collection_scope.attributes_blacklist.include?(foreign_to_association)))
@@ -115,7 +146,8 @@ module ManagerRefresh
     end
 
     def loadable?(value)
-      value.kind_of?(::ManagerRefresh::InventoryObjectLazy) || value.kind_of?(::ManagerRefresh::InventoryObject)
+      value.kind_of?(::ManagerRefresh::InventoryObjectLazy) || value.kind_of?(::ManagerRefresh::InventoryObject) ||
+        value.kind_of?(::ManagerRefresh::ApplicationRecordReference)
     end
   end
 end

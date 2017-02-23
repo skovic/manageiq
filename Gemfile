@@ -40,7 +40,7 @@ gem "activerecord-session_store",     "~>1.0.0"
 gem "acts_as_list",                   "~>0.7.2"
 gem "acts_as_tree",                   "~>2.1.0" # acts_as_tree needs to be required so that it loads before ancestry
 gem "ancestry",                       "~>2.2.1",       :require => false
-gem "ansible_tower_client",           "~>0.6.0",       :require => false
+gem "ansible_tower_client",           "~>0.7.0",       :require => false
 gem "aws-sdk",                        "~>2",           :require => false
 gem "bundler",                        ">=1.11.1",      :require => false
 gem "color",                          "~>1.8"
@@ -73,7 +73,6 @@ gem "novnc-rails",                    "~>0.2"
 gem "omniauth",                       "~>1.3.1",       :require => false
 gem "omniauth-google-oauth2",         "~>0.2.6"
 gem "open4",                          "~>1.3.0",       :require => false
-gem "outfielding-jqplot-rails",       "= 1.0.8"
 gem "ovirt-engine-sdk",               "~>4.0.6",       :require => false # Required by the oVirt provider
 gem "ovirt_metrics",                  "~>1.4.0",       :require => false
 gem "pg-pglogical",                   "~>1.0.0",       :require => false

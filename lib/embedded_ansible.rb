@@ -35,7 +35,7 @@ class EmbeddedAnsible
     return false unless configured? && running?
     begin
       api_connection.api.verify_credentials
-    rescue Faraday::ConnectionFailed, Faraday::SSLError, AnsibleTowerClient::ConnectionError, AnsibleTowerClient::ClientError
+    rescue AnsibleTowerClient::ClientError
       return false
     end
     true
@@ -48,6 +48,7 @@ class EmbeddedAnsible
   end
 
   def self.start
+    configure_secret_key
     run_setup_script(playbook_extra_variables.merge(:k => START_EXCLUDE_TAGS))
   end
 

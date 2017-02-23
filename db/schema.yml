@@ -87,6 +87,10 @@ authentication_configuration_script_bases:
 - id
 - authentication_id
 - configuration_script_base_id
+authentication_orchestration_stacks:
+- id
+- authentication_id
+- orchestration_stack_id
 authentications:
 - id
 - name
@@ -1246,6 +1250,7 @@ event_streams:
 - middleware_server_name
 - middleware_deployment_id
 - middleware_deployment_name
+- generating_ems_id
 ext_management_systems:
 - id
 - name
@@ -6016,6 +6021,8 @@ orchestration_stack_resources:
 - last_updated
 - stack_id
 - ems_ref
+- start_time
+- finish_time
 orchestration_stacks:
 - id
 - name

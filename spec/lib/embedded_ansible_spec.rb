@@ -130,14 +130,14 @@ describe EmbeddedAnsible do
           expect(api_conn).to receive(:api).and_return(api)
         end
 
-        it "returns false when a Faraday::ConnectionFailed is raised" do
-          error = Faraday::ConnectionFailed.new("error")
+        it "returns false when a AnsibleTowerClient::ConnectionError is raised" do
+          error = AnsibleTowerClient::ConnectionError.new("error")
           expect(api).to receive(:verify_credentials).and_raise(error)
           expect(described_class.alive?).to be false
         end
 
-        it "returns false when a Faraday::SSLError is raised" do
-          error = Faraday::SSLError.new("error")
+        it "returns false when a AnsibleTowerClient::SSLError is raised" do
+          error = AnsibleTowerClient::SSLError.new("error")
           expect(api).to receive(:verify_credentials).and_raise(error)
           expect(described_class.alive?).to be false
         end
@@ -278,6 +278,7 @@ describe EmbeddedAnsible do
         miq_database.set_ansible_rabbitmq_authentication(:userid => "rabbituser", :password => "rabbitpassword")
         miq_database.set_ansible_database_authentication(:userid => "databaseuser", :password => "databasepassword")
 
+        expect(described_class).to receive(:configure_secret_key)
         expect(AwesomeSpawn).to receive(:run!) do |script_path, options|
           params                  = options[:params]
           inventory_file_contents = File.read(params[:i])

@@ -652,6 +652,14 @@
       :post:
       - :name: assign
       - :name: unassign
+  :firmwares:
+    :description: Firmwares
+    :options:
+    - :collection
+    - :subcollection
+    :verbs: *g
+    :klass: Firmware
+    :identifier: firmwares
   :flavors:
     :description: Flavors
     :identifier: flavor

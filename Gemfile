@@ -47,7 +47,6 @@ gem "color",                          "~>1.8"
 gem "config",                         "~>1.3.0",       :require => false
 gem "dalli",                          "~>2.7.4",       :require => false
 gem "default_value_for",              "~>3.0.2"
-gem "draper",                         "~>3.0.0.pre1"
 gem "elif",                           "=0.1.0",        :require => false
 gem "fast_gettext",                   "~>1.2.0"
 gem "fog-google",                     ">=0.5.2",       :require => false
@@ -75,7 +74,7 @@ gem "omniauth-google-oauth2",         "~>0.2.6"
 gem "open4",                          "~>1.3.0",       :require => false
 gem "ovirt-engine-sdk",               "~>4.0.6",       :require => false # Required by the oVirt provider
 gem "ovirt_metrics",                  "~>1.4.0",       :require => false
-gem "pg-pglogical",                   "~>1.0.0",       :require => false
+gem "pg-pglogical",                   "~>1.1.0",       :require => false
 gem "puma",                           "~>3.3.0"
 gem "query_relation",                 "~>0.1.0",       :require => false
 gem "rails",                          "~>5.0.1"

@@ -140,6 +140,7 @@ authentications:
 - rhsm_pool_id
 - rhsm_server
 - manager_ref
+- options
 availability_zones:
 - id
 - ems_id
@@ -1575,6 +1576,7 @@ jobs:
 - archive
 - options
 - context
+- miq_task_id
 key_pairs_vms:
 - authentication_id
 - vm_id
@@ -5319,6 +5321,8 @@ miq_tasks:
 - results
 - miq_server_id
 - identifier
+- started_on
+- zone
 miq_user_roles:
 - id
 - name
@@ -6044,6 +6048,11 @@ orchestration_stacks:
 - status_reason
 - cloud_tenant_id
 - resource_group
+- start_time
+- finish_time
+- configuration_script_base_id
+- verbosity
+- hosts
 orchestration_templates:
 - id
 - name

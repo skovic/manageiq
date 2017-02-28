@@ -2313,6 +2313,8 @@
       - :name: read
         :identifier: vm_snapshot_view
       :post:
+      - :name: revert
+        :identifier: vm_snapshot_revert
       - :name: delete
         :identifier: vm_snapshot_delete
       :delete:

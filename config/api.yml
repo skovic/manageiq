@@ -255,6 +255,7 @@
     :description: Authentications
     :options:
     - :collection
+    - :subcollection
     :verbs: *gpd
     :klass: Authentication
     :collection_actions:
@@ -274,6 +275,10 @@
       :delete:
       - :name: delete
         :identifier: embedded_automation_manager_credentials_delete
+    :subcollection_actions:
+      :get:
+      - :name: read
+        :identifier: embedded_automation_manager_credentials_view
   :automate:
     :description: Automate
     :options:
@@ -576,6 +581,8 @@
     - :collection
     :verbs: *g
     :klass: ConfigurationScriptPayload
+    :subcollections:
+      - :authentications
     :collection_actions:
       :get:
       - :name: read
@@ -1788,6 +1795,8 @@
       :post:
       - :name: edit
         :identifier: catalogitem_edit
+      - :name: delete
+        :identifier: catalogitem_delete
       :delete:
       - :name: delete
         :identifier: catalogitem_delete
@@ -1874,6 +1883,8 @@
         :identifier: service_admin
       - :name: suspend
         :identifier: service_admin
+      - :name: delete
+        :identifier: service_delete
       :delete:
       - :name: delete
         :identifier: service_delete
@@ -2018,6 +2029,8 @@
         :disabled: true
       - :name: set_ownership
         :identifier: miq_template_ownership
+      - :name: delete
+        :identifier: miq_template_delete
       :delete:
       - :name: delete
         :identifier: miq_template_delete

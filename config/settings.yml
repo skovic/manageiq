@@ -190,6 +190,9 @@
       - aggregate.removehost.end
       - aggregate.updateprop.end
       - aggregate.updatemetadata.end
+      - identity.project.created
+      - identity.project.deleted
+      - identity.project.updated
       - image.update
       - image.create
       - image.upload
@@ -1275,6 +1278,9 @@
         :poll: 10.seconds
       :event_catcher_lenovo:
         :poll: 4.minutes
+      :event_catcher_hawkular_datawarehouse:
+        :alertable_tenants: ['_system', '_ops']
+        :poll: 1.minute
       :event_catcher_google:
         :poll: 15.seconds
       :event_catcher_kubernetes:

@@ -1,26 +1,14 @@
 module ManageIQ::Providers::AnsibleTower::Shared::Inventory::Persister::AutomationManager
-  def automation
-    ManageIQ::Providers::Inflector.provider_module(manager.class)::InventoryCollectionDefault::AutomationManager
-  end
+  extend ActiveSupport::Concern
+  include ManagerRefresh::Inventory::AutomationManager
 
-  def initialize_inventory_collections
-    add_inventory_collections(
-      automation,
-      %i(inventory_root_groups configured_systems configuration_scripts configuration_script_sources configuration_script_payloads),
-      :builder_params => {:manager => manager}
-    )
-
-    add_inventory_collections(
-      automation,
-      %i(credentials),
-      :builder_params => {:resource => manager}
-    )
-
-    collections[:vms] = ::ManagerRefresh::InventoryCollection.new(
-      :model_class => Vm,
-      :arel        => Vm,
-      :strategy    => :local_db_find_references,
-      :manager_ref => [:uid_ems]
-    )
+  included do
+    has_automation_manager_credentials
+    has_automation_manager_configuration_scripts
+    has_automation_manager_configuration_script_sources
+    has_automation_manager_configuration_script_payloads :model_class => ManageIQ::Providers::Inflector.provider_module(self)::AutomationManager::Playbook
+    has_automation_manager_configured_systems
+    has_automation_manager_inventory_root_groups
+    has_vms :parent => nil, :arel => Vm, :strategy => :local_db_find_references
   end
 end

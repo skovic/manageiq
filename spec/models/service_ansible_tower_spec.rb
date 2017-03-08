@@ -1,6 +1,7 @@
 describe ServiceAnsibleTower do
-  let(:template_by_dialog) { FactoryGirl.create(:configuration_script) }
-  let(:template_by_setter) { FactoryGirl.create(:configuration_script) }
+  let(:tower) { FactoryGirl.create(:automation_manager_ansible_tower) }
+  let(:template_by_dialog) { FactoryGirl.create(:configuration_script, :manager => tower) }
+  let(:template_by_setter) { FactoryGirl.create(:configuration_script, :manager => tower) }
 
   let(:dialog_options) do
     {
@@ -84,6 +85,12 @@ describe ServiceAnsibleTower do
 
       expect(service_mix_dialog_setter).to receive(:save_launch_options)
       expect { service_mix_dialog_setter.launch_job }.to raise_error(provision_error)
+    end
+  end
+
+  describe '#configuration_manager' do
+    it 'has a valid configuration manager' do
+      expect(service_mix_dialog_setter.configuration_manager.name).not_to be_nil
     end
   end
 end

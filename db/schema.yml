@@ -313,6 +313,8 @@ cloud_object_store_containers:
 - bytes
 - ems_id
 - cloud_tenant_id
+- name
+- type
 cloud_object_store_objects:
 - id
 - ems_ref
@@ -324,6 +326,8 @@ cloud_object_store_objects:
 - ems_id
 - cloud_tenant_id
 - cloud_object_store_container_id
+- name
+- type
 cloud_resource_quotas:
 - id
 - ems_ref
@@ -1554,7 +1558,6 @@ jobs:
 - state
 - status
 - message
-- code
 - name
 - userid
 - created_on
@@ -6431,6 +6434,7 @@ services:
 - retirement_requester
 - tenant_id
 - ancestry
+- initiator
 sessions:
 - id
 - session_id

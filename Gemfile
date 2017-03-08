@@ -62,7 +62,7 @@ gem "inifile",                        "~>3.0",         :require => false
 gem "jbuilder",                       "~>2.5.0" # For the REST API
 gem "manageiq-api-client",            "~>0.1.0",       :require => false
 gem "mime-types",                     "~>2.6.1",       :require => "mime/types/columnar"
-gem "more_core_extensions",           "~>3.1"
+gem "more_core_extensions",           "~>3.2"
 gem "nakayoshi_fork",                 "~>0.0.3"  # provides a more CoW friendly fork (GC a few times before fork)
 gem "net-ldap",                       "~>0.14.0",      :require => false
 gem "net-ping",                       "~>1.7.4",       :require => false
@@ -73,11 +73,11 @@ gem "omniauth",                       "~>1.3.1",       :require => false
 gem "omniauth-google-oauth2",         "~>0.2.6"
 gem "open4",                          "~>1.3.0",       :require => false
 gem "ovirt-engine-sdk",               "~>4.0.10",      :require => false # Required by the oVirt provider
-gem "ovirt_metrics",                  "~>1.4.0",       :require => false
+gem "ovirt_metrics",                  "~>1.4.1",       :require => false
 gem "pg-pglogical",                   "~>1.1.0",       :require => false
 gem "puma",                           "~>3.3.0"
 gem "query_relation",                 "~>0.1.0",       :require => false
-gem "rails",                          "~>5.0.1"
+gem "rails",                          "~>5.0.2"
 gem "rails-controller-testing",                        :require => false
 gem "rails-i18n",                     "~>5.x"
 gem "recursive-open-struct",          "~>1.0.0"

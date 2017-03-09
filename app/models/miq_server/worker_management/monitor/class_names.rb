@@ -24,6 +24,7 @@ module MiqServer::WorkerManagement::Monitor::ClassNames
     ManageIQ::Providers::Google::CloudManager::RefreshWorker
     ManageIQ::Providers::Google::NetworkManager::RefreshWorker
     ManageIQ::Providers::AnsibleTower::AutomationManager::RefreshWorker
+    ManageIQ::Providers::EmbeddedAnsible::AutomationManager::RefreshWorker
     ManageIQ::Providers::Foreman::ConfigurationManager::RefreshWorker
     ManageIQ::Providers::Foreman::ProvisioningManager::RefreshWorker
     ManageIQ::Providers::Hawkular::MiddlewareManager::RefreshWorker
@@ -45,6 +46,7 @@ module MiqServer::WorkerManagement::Monitor::ClassNames
     ManageIQ::Providers::Nuage::NetworkManager::RefreshWorker
     ManageIQ::Providers::Amazon::CloudManager::EventCatcher
     ManageIQ::Providers::AnsibleTower::AutomationManager::EventCatcher
+    ManageIQ::Providers::EmbeddedAnsible::AutomationManager::EventCatcher
     ManageIQ::Providers::Azure::CloudManager::EventCatcher
     ManageIQ::Providers::Hawkular::MiddlewareManager::EventCatcher
     ManageIQ::Providers::Hawkular::DatawarehouseManager::EventCatcher
@@ -108,6 +110,7 @@ module MiqServer::WorkerManagement::Monitor::ClassNames
     ManageIQ::Providers::Google::CloudManager::RefreshWorker
     ManageIQ::Providers::Google::NetworkManager::RefreshWorker
     ManageIQ::Providers::AnsibleTower::AutomationManager::RefreshWorker
+    ManageIQ::Providers::EmbeddedAnsible::AutomationManager::RefreshWorker
     ManageIQ::Providers::Foreman::ConfigurationManager::RefreshWorker
     ManageIQ::Providers::Foreman::ProvisioningManager::RefreshWorker
     ManageIQ::Providers::Hawkular::MiddlewareManager::RefreshWorker
@@ -142,6 +145,7 @@ module MiqServer::WorkerManagement::Monitor::ClassNames
     ManageIQ::Providers::Amazon::CloudManager::EventCatcher
     ManageIQ::Providers::Azure::CloudManager::EventCatcher
     ManageIQ::Providers::AnsibleTower::AutomationManager::EventCatcher
+    ManageIQ::Providers::EmbeddedAnsible::AutomationManager::EventCatcher
     ManageIQ::Providers::Hawkular::MiddlewareManager::EventCatcher
     ManageIQ::Providers::Hawkular::DatawarehouseManager::EventCatcher
     ManageIQ::Providers::Google::CloudManager::EventCatcher

@@ -98,6 +98,8 @@
 :ems:
   :ems_redhat:
     :resolve_ip_addresses: true
+    :inventory:
+      :read_timeout: 1.hour
     :service:
       :read_timeout: 1.hour
   :ems_kubernetes:
@@ -1067,6 +1069,7 @@
 :repository_scanning:
   :defaultsmartproxy:
 :server:
+  :asynchronous_notifications: true
   :case_sensitive_name_search: false
   :company: My Company
   :console_proxy_disabled: true
@@ -1204,6 +1207,7 @@
       :starting_timeout: 10.minutes
       :stopping_timeout: 10.minutes
     :embedded_ansible_worker:
+      :starting_timeout: 20.minutes
       :poll: 10.seconds
       :memory_threshold: 0.megabytes
     :ems_refresh_core_worker:

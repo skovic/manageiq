@@ -3,6 +3,7 @@
 - :automate
 - :ansible
 - :at
+- :bst
 - :clo
 - :cnt
 - :compute
@@ -13,6 +14,8 @@
 - :dwh
 - :net
 - :opt
+- :ost
+- :phy
 - :set
 - :sto
 - :svc

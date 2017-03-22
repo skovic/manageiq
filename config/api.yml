@@ -744,14 +744,6 @@
       :post:
       - :name: assign
       - :name: unassign
-  :firmwares:
-    :description: Firmwares
-    :options:
-    - :collection
-    - :subcollection
-    :verbs: *g
-    :klass: Firmware
-    :identifier: firmwares
   :flavors:
     :description: Flavors
     :identifier: flavor
@@ -1080,7 +1072,6 @@
     :verbs: *gp
     :klass: PhysicalServer
     :subcollections:
-    - :firmwares
     :collection_actions:
       :post:
       - :name: power_on

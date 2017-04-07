@@ -6154,6 +6154,8 @@ physical_servers:
 - serial_number
 - field_replaceable_unit
 - raw_power_state
+- vendor
+- location_led_state
 pictures:
 - id
 - resource_id

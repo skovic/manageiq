@@ -9,6 +9,7 @@ module EmsRefresh::SaveInventory
       ManagerRefresh::SaveInventory.save_inventory(ems, hashes.values)
       return
     end
+
     case ems
     when EmsCloud                                           then save_ems_cloud_inventory(ems, hashes, target)
     when EmsInfra                                           then save_ems_infra_inventory(ems, hashes, target)
@@ -18,7 +19,6 @@ module EmsRefresh::SaveInventory
     when ManageIQ::Providers::ContainerManager              then save_ems_container_inventory(ems, hashes, target)
     when ManageIQ::Providers::NetworkManager                then save_ems_network_inventory(ems, hashes, target)
     when ManageIQ::Providers::StorageManager                then save_ems_storage_inventory(ems, hashes, target)
-    when ManageIQ::Providers::MiddlewareManager             then save_ems_middleware_inventory(ems, hashes, target)
     when ManageIQ::Providers::DatawarehouseManager          then save_ems_datawarehouse_inventory(ems, hashes, target)
     when ManageIQ::Providers::PhysicalInfraManager          then save_ems_physical_infra_inventory(ems, hashes, target)
     end
@@ -215,7 +215,7 @@ module EmsRefresh::SaveInventory
 
   def save_hardware_inventory(parent, hash)
     return if hash.nil?
-    save_inventory_single(:hardware, parent, hash, [:disks, :guest_devices, :networks])
+    save_inventory_single(:hardware, parent, hash, [:disks, :guest_devices, :networks, :firmwares])
     parent.save!
   end
 
@@ -276,6 +276,16 @@ module EmsRefresh::SaveInventory
     when :scan
       save_inventory_multi(hardware.networks, hashes, :use_association, [:description, :guid])
     end
+  end
+
+  def save_firmwares_inventory(hardware, hashes)
+    return if hashes.nil?
+
+    save_inventory_multi(hardware.firmwares, hashes, :use_association, [:name])
+  end
+
+  def save_computer_system_inventory(parent, hash, _target = nil)
+    save_inventory_single(:computer_system, parent, hash, [:hardware, :operating_system])
   end
 
   def save_system_services_inventory(parent, hashes, mode = :refresh)

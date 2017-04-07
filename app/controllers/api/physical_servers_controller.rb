@@ -31,7 +31,6 @@ module Api
     private
 
     def change_resource_state(state, type, id)
-      _log.info("Change the state of resource: #{type} instance: #{id}")
       raise BadRequestError, "Must specify an id for changing a #{type} resource" unless id
 
       api_action(type, id) do |klass|

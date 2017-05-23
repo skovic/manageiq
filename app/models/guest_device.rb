@@ -10,4 +10,5 @@ class GuestDevice < ApplicationRecord
 
   has_one :network, :foreign_key => "device_id", :dependent => :destroy, :inverse_of => :guest_device
   has_many :miq_scsi_targets, :dependent => :destroy
+  has_one :firmware, :dependent => :destroy
 end

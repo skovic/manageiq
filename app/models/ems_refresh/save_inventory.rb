@@ -278,6 +278,12 @@ module EmsRefresh::SaveInventory
     save_inventory_multi(hardware.firmwares, hashes, :use_association, [:name])
   end
 
+  def save_guest_devices_inventory(hardware, hashes)
+    return if hashes.nil?
+
+    save_inventory_multi(hardware.guest_devices, hashes, :use_association, [:device_name])
+  end
+
   def save_computer_system_inventory(parent, hash, _target = nil)
     save_inventory_single(:computer_system, parent, hash, [:hardware, :operating_system])
   end
